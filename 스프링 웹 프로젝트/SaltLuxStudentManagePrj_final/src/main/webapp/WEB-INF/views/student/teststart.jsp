@@ -136,10 +136,10 @@ function button_event(){
 	<!-- 답안 -->
 	<td>	
 	<c:if test="${problem.problemCase eq ' ' }">
-		<input type="text" name="answer${status.count}" placeholder="정답입력" required><br>
+		<input type="text" name="answer${status.count}" placeholder="정답입력"><br>
 	</c:if>	
   	<c:if test="${problem.problemCase ne ' ' }">	
-			1<input type="radio" name="answer${status.count}" value="1" checked>
+			1<input type="radio" name="answer${status.count}" value="1">
 			2<input type="radio" name="answer${status.count}" value="2">
 			3<input type="radio" name="answer${status.count}" value="3">
 			4<input type="radio" name="answer${status.count}" value="4"><br>		
