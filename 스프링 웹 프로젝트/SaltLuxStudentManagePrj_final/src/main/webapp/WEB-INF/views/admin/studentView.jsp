@@ -70,7 +70,7 @@ table.table>thead>tr>th {
 					<td width="4%">${student.studentId}</td>
 					<td width="4%">${student.studentName}</td>
 					<td width="4%">${student.emailId}</td>
-					<td width="4%">${student.password}</td>
+					<td width="4%" type="hidden" name="password" value="${student.password}">****</td>
 					<td width="4%">
 						<c:set var="len"
 							value="${fn: length(fileInfo.file_name)}" /> <c:set

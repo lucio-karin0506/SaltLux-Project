@@ -71,7 +71,7 @@ table.table>thead>tr>th {
 								<td><a href="${student.studentId}">${student.studentId}</a></td>
 								<td>${student.studentName}</td>
 								<td>${student.emailId}</td>
-								<td>${student.password}</td>
+								<td type="hidden" name="password" value="${student.password}">****</td>
 							</tr>
 						</c:if>
 					</c:forEach>
