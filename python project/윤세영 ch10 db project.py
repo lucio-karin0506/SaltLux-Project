@@ -48,7 +48,7 @@ def login(id, pw):
         print('글쓰기: w, 상세보기: 글 번호 입력, 로그아웃: logout')
         menu_mode = input('선택: ')
 
-        text_menu(menu_mode, id)
+        text_menu(menu_mode, id, pw)
     else:
         print('wrong id or pw! Input again!')
 
@@ -116,21 +116,23 @@ def renew_read_count(text_id):
 #==================================================================================
 # 글 작성 관련 메뉴
 # 메뉴별 작업 수행 후 로그인 메뉴로 돌아감
-def text_menu(menu, id):
+def text_menu(menu, id, pw):
 
     while True:
         if menu == 'w':
             input_text_info(id)
             print('글 작성이 완료되었습니다!')
             conn.commit()
-            break
+            # login 시 메뉴로 돌아감
+            login(id, pw)
         elif get_text_id(menu) != None:
             # 글 상세보기
             display_detail_info(menu)
             # 조회수 갱신
             renew_read_count(menu)
             conn.commit()
-            break
+             # login 시 메뉴로 돌아감
+            login(id, pw)
         elif menu == 'logout':
             print('로그아웃!')
             break
