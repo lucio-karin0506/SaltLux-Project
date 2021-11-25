@@ -78,7 +78,7 @@ def input_text_info(id):
     text_dict = {
                     'title' : title,
                     'author' : id,
-                    'read_count' : 1,
+                    'read_count' : 0,
                     'contents' : contents
                 }
 
