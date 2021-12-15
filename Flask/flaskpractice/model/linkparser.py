@@ -15,7 +15,6 @@ def get_link_data(link):
             for i, title in enumerate(title_list):
                 movie_rank_dict[str(i)] = title.text
 
-            print(movie_rank_dict)
             return movie_rank_dict
         else:
             print('abnormal response')
