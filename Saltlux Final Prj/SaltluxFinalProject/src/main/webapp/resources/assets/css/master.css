@@ -1,0 +1,180 @@
+@charset "UTF-8";
+
+.tabs {
+}
+
+.tabs__sidebar {
+  width: 100%;
+  text-align: center;
+  flex-shrink: 0;
+  margin-bottom: 50px;
+}
+
+.tabs__button {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: 100%;
+  vertical-align: top;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+}
+
+.tabs__button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.tabs__button:active {
+  background: #dddddd;
+}
+
+.tab__button:not(:last-of-type) {
+  border-bottom: 1px solid #cccccc;
+}
+
+.tabs__button--active{
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.tabs__content{
+  width: 100%;
+  padding: 15px;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.tabs__content--active{
+  display: block;
+}
+
+.tabs__content > :first-child {
+	margin-top: 0;
+}
+
+ /* The Modal (background) */
+ .modal {
+     display: table; /* Hidden by default */
+     position: fixed; /* Stay in place */
+     z-index: 1; /* Sit on top */
+     padding-top: 100px; /* Location of the box */
+     left: 0;
+     top: 0;
+     vertical-align: middle;
+     width: 100%; /* Full width */
+     height: 100%; /* Full height */
+     overflow: auto; /* Enable scroll if needed */
+     background-color: rgb(0,0,0); /* Fallback color */
+     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ }
+
+ /* Modal Content */
+ .modal-content {
+      position: relative;
+	  background-color: #fefefe;
+	  margin: auto;
+	  padding: 0;
+	  border: 1px solid #888;
+	  text-align: center;
+	  width: 500px;
+	  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	  -webkit-animation-name: animatetop;
+	  -webkit-animation-duration: 0.4s;
+	  animation-name: animatetop;
+	  animation-duration: 0.4s
+ }
+
+ /* The Close Button */
+ .close {
+     color: white;
+	  float: right;
+	  font-size: 28px;
+	  font-weight: bold;
+ }
+ 
+ .modal-header {
+  padding: 2px 16px;
+  background-color: #c1ffc1;
+  color: white;
+}
+
+.modal-body {
+	padding: 2px 16px;
+	margin: 45px;
+	text-align: center;
+	}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #c1ffc1;
+  color: white;
+  text-align: center;
+}
+
+ .close:hover,
+ .close:focus {
+     color: #000;
+     text-decoration: none;
+     cursor: pointer;
+ }
+ 
+ 
+ /*WordCloud CSS*/
+.highcharts-figure,
+.highcharts-data-table table {
+    min-width: 80%;
+    max-width: 90%;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+/*end WordCloud*/

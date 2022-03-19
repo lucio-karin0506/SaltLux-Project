@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosa.saltlux.repository.IUserRepository">
+	<resultMap type="com.kosa.saltlux.vo.NewsVO" id="NewsMap">
+		<result column="NEWS_NO" property="newsNo" />
+		<result column="TITLE" property="title" />
+		<result column="CONTENTS" property="contents" />
+		<result column="IMAGE_URL" property="imageURL" />
+		<result column="THUMBNAIL_URL" property="thumbnailURL" />
+		<result column="PRESS" property="press" />
+		<result column="CATEGORY" property="category" />
+		<result column="NEWS_DATE" property="newsDate" />
+		<result column="NOUNS" property="nouns" />
+	</resultMap>
+	
+	<resultMap type="com.kosa.saltlux.vo.MainDashBoardVO" id="MainDashBoardMap">
+		<result column="KEYWORD" property="keyword" />
+		<result column="CATEGORY" property="category" />
+		<result column="BTF" property="btf" />
+	</resultMap>
+	
+	<resultMap type="com.kosa.saltlux.vo.RealtimeVO" id="RealtimeMap">
+		<result column="KEYWORD" property="keyword" />
+		<result column="BTF_RATIO" property="btfRatio" />
+	</resultMap>
+	
+	<resultMap type="com.kosa.saltlux.vo.ClusterVO" id="ClusterMap">
+		<result column="CLUSTER_NUM" property="clusterNum" />
+		<result column="ARTICLE_INDEX" property="articleIndex" />
+		<result column="CNT" property="cnt" />
+	</resultMap>
+	
+	<select id="getPageTotal" resultType="int">
+		SELECT COUNT(*) FROM luxian.NEWS;
+	</select>
+	
+	<select id="getNews" resultType="com.kosa.saltlux.vo.NewsVO">
+		SELECT NEWS_NO AS newsNo,
+			   TITLE AS title,
+			   CONTENTS AS contents,
+			   IMAGE_URL AS imageURL,
+			   THUMBNAIL_URL AS thumbnailURL,
+			   PRESS AS press,
+			   CATEGORY AS category,
+			   NEWS_DATE AS newsDate,
+			   NOUNS AS nouns 
+		FROM luxian.NEWS
+		limit 9;
+	</select>
+	
+	<select id="getDB" resultType="com.kosa.saltlux.vo.NewsVO">
+		SELECT NEWS_NO AS newsNo,
+			   TITLE AS title,
+			   CONTENTS AS contents,
+			   IMAGE_URL AS imageURL,
+			   THUMBNAIL_URL AS thumbnailURL,
+			   PRESS AS press,
+			   CATEGORY AS category,
+			   NEWS_DATE AS newsDate,
+			   NOUNS AS nouns
+		FROM luxian.NEWS
+		limit #{cnt}, 10;
+	</select>
+	
+	<select id="getMainDashBoardChart" resultType="com.kosa.saltlux.vo.MainDashBoardVO">
+	<choose>
+		<when test="category != '전체'">
+			select KEYWORD  AS keyword,
+			  CATEGORY AS category,
+			  BTF      AS btf
+			from luxian.maindashboard
+			WHERE CHAR_LENGTH(keyword) > 1
+			and category = #{category}
+			order by btf desc
+			limit 70;
+		</when>
+		<otherwise>
+			select KEYWORD  AS keyword,
+				sum(btf) as btf
+			from luxian.maindashboard
+			WHERE CHAR_LENGTH(keyword) > 1
+			group by keyword 
+			order by btf desc
+			limit 70;
+		</otherwise>
+	
+	</choose>
+	</select>
+	
+	<!--  
+	결과페이지 급상승키워드 Top N개 조회
+	DB : REALTIME
+	ID : getRealtimeTop
+	-->
+	<select id="getRealtimeTop" resultType="com.kosa.saltlux.vo.RealtimeVO">
+		select KEYWORD   as keyword,
+		       BTF_RATIO as btfRatio 
+		from luxian.realtime
+		order by btf_ratio desc
+		limit 10;
+	</select>
+	
+	<!-- 
+	오늘의 이슈 뉴스리스트 
+	DB : CLUSTER
+	ID : getTodayIssue
+	 -->
+	<select id="getTodayIssue" resultType="com.kosa.saltlux.vo.ClusterVO">
+		select CLUSTER_NUM   as clusterNum,
+		       ARTICLE_INDEX as articleIndex, 
+		       CNT           as cnt
+		from luxian.cluster
+		order by cluster_num
+	</select>
+	
+	
+	<select id="getTodayNews" resultType="com.kosa.saltlux.vo.NewsVO">
+	SELECT NEWS_NO AS newsNo,
+		   TITLE AS title,
+		   CONTENTS AS contents,
+		   IMAGE_URL AS imageURL,
+		   THUMBNAIL_URL AS thumbnailURL,
+		   PRESS AS press,
+		   CATEGORY AS category,
+		   NEWS_DATE AS newsDate,
+		   NOUNS AS nouns 
+	FROM luxian.NEWS
+	where news_no = #{index}
+	</select>
+</mapper>
